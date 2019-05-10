@@ -7,9 +7,9 @@ sudo: required
 
 dist: trusty
 
-install:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - mvn cobertura:cobertura
+#install:
+#  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+#  - mvn cobertura:cobertura
 
 addons:
   sonarcloud:
