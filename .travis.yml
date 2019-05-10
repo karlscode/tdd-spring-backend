@@ -1,0 +1,25 @@
+language: java
+
+java:
+  - "8"
+
+sudo: required
+
+dist: trusty
+
+addons:
+  sonarcloud:
+    organization: "karlscode-github"
+    token:
+      # encrypted value of your token
+      secure: $TDD_SPRING
+
+script:
+  # other script steps might be done before running the actual analysis.
+  - sonar-scanner
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis.
+   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
