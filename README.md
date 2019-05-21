@@ -16,7 +16,7 @@
 Application developed with Spring MVC 5 and Spring Boot 2 using TDD in the development process.
 
 ## Class Diagram
-https://github.com/karlscode/tdd-spring-backend/blob/master/Class%20Diagram%201.png
+![class-diagram-1](https://github.com/karlscode/tdd-spring-backend/blob/master/Class%20Diagram%201.png)
 
 ## Tests
    + Unit testing
