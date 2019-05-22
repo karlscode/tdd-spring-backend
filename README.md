@@ -8,12 +8,12 @@ Application developed with Spring MVC 5 and Spring Boot 2 using TDD in the devel
    + Unit testing
    + Integration test
    + HSQLDB (database for testing)
+   + Coverage: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=coverage)](https://sonarcloud.io/dashboard?id=tdd-spring)
+   + Bugs: [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=bugs)](https://sonarcloud.io/dashboard?id=tdd-spring)
   
 ## Contiunuos Integration
    + Travis CI: [![Build Status](https://travis-ci.com/karlscode/tdd-spring-backend.svg?branch=master)](https://travis-ci.com/karlscode/tdd-spring-backend)
    + SonarCloud: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=alert_status)](https://sonarcloud.io/dashboard?id=tdd-spring)
-   + Coverage: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=coverage)](https://sonarcloud.io/dashboard?id=tdd-spring)
-   + Bugs: [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=bugs)](https://sonarcloud.io/dashboard?id=tdd-spring)
  
  ## Security
    + Security: [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=security_rating)](https://sonarcloud.io/dashboard?id=tdd-spring)
