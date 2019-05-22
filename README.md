@@ -10,12 +10,16 @@ Application developed with Spring MVC 5 and Spring Boot 2 using TDD in the devel
    + Integration test
    + HSQLDB (database for testing)
   
+## Contiunuos Integration
+   + Travis CI: [![Build Status](https://travis-ci.com/karlscode/tdd-spring-backend.svg?branch=master)](https://travis-ci.com/karlscode/tdd-spring-backend)
+   + SonarCloud: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=alert_status)](https://sonarcloud.io/dashboard?id=tdd-spring)
+ 
 ## Quality
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=alert_status)](https://sonarcloud.io/dashboard?id=tdd-spring)
+
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=tdd-spring)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=tdd-spring)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=security_rating)](https://sonarcloud.io/dashboard?id=tdd-spring)
-[![Build Status](https://travis-ci.com/karlscode/tdd-spring-backend.svg?branch=master)](https://travis-ci.com/karlscode/tdd-spring-backend)
+
 
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=tdd-spring)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tdd-spring&metric=coverage)](https://sonarcloud.io/dashboard?id=tdd-spring)
