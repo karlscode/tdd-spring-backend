@@ -38,44 +38,48 @@ public class PersonResourceTest extends DemoApplicationTests {
         given()
                 .pathParam("ddd", "86")
                 .pathParam("number", "35006330")
-        .get("/people/{ddd}/{number}")
+        .when()
+                .get("/people/{ddd}/{number}")
         .then()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_OK)
-                .body("id", equalTo(3),
-                        "name", equalTo("Cauê"),
-                        "cpf", equalTo("38767897100")
-                );
+//                .body("id", is(3))
+                .body("id", is(3))
+                .body("name", is("Cauê"))
+                .body("cpf", is("38767897100"))
+        ;
     }
 
     @Test
     public void should_return_all_people() {
         given()
-        .get("/people")
+        .when()
+                .get("/people")
         .then()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_OK)
-                .body("id", containsInAnyOrder(1, 2, 3, 4, 5),
-                        "name", containsInAnyOrder("Thiago", "Iago", "Cauê", "Breno", "Pedro"),
-                        "cpf", containsInAnyOrder("72788740417", "38767897100", "86730543540", "55565893569", "78673781620")
-                );
+                .body("id", containsInAnyOrder(1, 2, 3, 4, 5))
+                .body("name", containsInAnyOrder("Thiago", "Iago", "Cauê", "Breno", "Pedro"))
+                .body("cpf", containsInAnyOrder("72788740417", "38767897100", "86730543540", "55565893569", "78673781620"))
+        ;
     }
 
     @Test
     public void should_return_a_person_by_id() {
         given()
                 .pathParam("id", 1)
-        .get("/people/{id}")
+        .when()
+                .get("/people/{id}")
         .then()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_OK)
-                .body("id", equalTo(1),
-                        "name", equalTo("Iago"),
-                        "cpf", equalTo("86730543540")
-                );
+                .body("id", is(1))
+                .body("name", is("Iago"))
+                .body("cpf", is("86730543540"))
+        ;
     }
 
     @Test
@@ -83,13 +87,14 @@ public class PersonResourceTest extends DemoApplicationTests {
         given()
                 .pathParam("ddd", "99")
                 .pathParam("number", "987654321")
-        .get("/people/{ddd}/{number}")
+        .when()
+                .get("/people/{ddd}/{number}")
         .then()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_NOT_FOUND)
-                .body("error", equalTo("Phone not found: (99) 987654321.")
-                );
+                .body("error", is("Phone not found: (99) 987654321."))
+        ;
     }
 
     @Test
@@ -103,22 +108,22 @@ public class PersonResourceTest extends DemoApplicationTests {
 
         given()
                 .request()
-                .header("Accept", ContentType.ANY)
-                .header("Content-type", ContentType.JSON)
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
                 .body(person)
         .when()
-        .post("/people")
+                .post("/people")
         .then()
                 .log().headers()
             .and()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_CREATED)
-                .header("Location", equalTo("http://localhost:" + port + "/people/6"))
-                .body("id", equalTo(6),
-                        "name", equalTo("Lorenzo"),
-                        "cpf", equalTo("62461410720")
-                );
+                .header("Location", is("http://localhost:" + port + "/people/6"))
+                .body("id", is(6))
+                .body("name", is("Lorenzo"))
+                .body("cpf", is("62461410720"))
+        ;
     }
 
     @Test
@@ -131,17 +136,17 @@ public class PersonResourceTest extends DemoApplicationTests {
 
         given()
                 .request()
-                .header("Accept", ContentType.ANY)
-                .header("Content-type", ContentType.JSON)
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
                 .body(person)
         .when()
-        .post("/people")
+                .post("/people")
         .then()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body("error", equalTo("CPF informed is already registered: 38767897100.")
-                );
+                .body("error", is("CPF informed is already registered: 38767897100."))
+        ;
     }
 
     @Test
@@ -154,17 +159,17 @@ public class PersonResourceTest extends DemoApplicationTests {
 
         given()
                 .request()
-                .header("Accept", ContentType.ANY)
-                .header("Content-type", ContentType.JSON)
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
                 .body(person)
         .when()
-        .post("/people")
+                .post("/people")
         .then()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body("error", equalTo("Phone informed is already registered: (41) 999570146.")
-                );
+                .body("error", is("Phone informed is already registered: (41) 999570146."))
+        ;
     }
 
     @Test
@@ -173,19 +178,19 @@ public class PersonResourceTest extends DemoApplicationTests {
 
         given()
                 .request()
-                .header("Accept", ContentType.ANY)
-                .header("Content-type", ContentType.JSON)
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
                 .body(filterPerson)
         .when()
-        .post("/people/filter")
+                .post("/people/filter")
         .then()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_OK)
-                .body("id", containsInAnyOrder(1, 3, 5),
-                        "name", containsInAnyOrder("Thiago", "Iago", "Cauê"),
-                        "cpf", containsInAnyOrder("72788740417", "38767897100", "86730543540")
-                );
+                .body("id", containsInAnyOrder(1, 3, 5))
+                .body("name", containsInAnyOrder("Thiago", "Iago", "Cauê"))
+                .body("cpf", containsInAnyOrder("72788740417", "38767897100", "86730543540"))
+        ;
     }
 
     @Test
@@ -194,19 +199,19 @@ public class PersonResourceTest extends DemoApplicationTests {
 
         given()
                 .request()
-                .header("Accept", ContentType.ANY)
-                .header("Content-type", ContentType.JSON)
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
                 .body(filterPerson)
         .when()
-        .post("/people/filter")
+                .post("/people/filter")
         .then()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_OK)
-                .body("id", containsInAnyOrder(1),
-                        "name", containsInAnyOrder("Iago"),
-                        "cpf", containsInAnyOrder("86730543540")
-                );
+                .body("id", containsInAnyOrder(1))
+                .body("name", containsInAnyOrder("Iago"))
+                .body("cpf", containsInAnyOrder("86730543540"))
+        ;
     }
 
     @Test
@@ -215,19 +220,19 @@ public class PersonResourceTest extends DemoApplicationTests {
 
         given()
                 .request()
-                .header("Accept", ContentType.ANY)
-                .header("Content-type", ContentType.JSON)
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
                 .body(filterPerson)
         .when()
-        .post("/people/filter")
+                .post("/people/filter")
         .then()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_OK)
-                .body("id", containsInAnyOrder(5),
-                        "name", containsInAnyOrder("Thiago"),
-                        "cpf", containsInAnyOrder("72788740417")
-                );
+                .body("id", containsInAnyOrder(5))
+                .body("name", containsInAnyOrder("Thiago"))
+                .body("cpf", containsInAnyOrder("72788740417"))
+        ;
     }
 
     @Test
@@ -236,19 +241,19 @@ public class PersonResourceTest extends DemoApplicationTests {
 
         given()
                 .request()
-                .header("Accept", ContentType.ANY)
-                .header("Content-type", ContentType.JSON)
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
                 .body(filterPerson)
         .when()
-        .post("/people/filter")
+                .post("/people/filter")
         .then()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_OK)
-                .body("id", containsInAnyOrder(3),
-                        "name", containsInAnyOrder("Cauê"),
-                        "phones.ddd", hasItem(containsInAnyOrder("86"))
-                );
+                .body("id", containsInAnyOrder(3))
+                .body("name", containsInAnyOrder("Cauê"))
+                .body("phones.ddd", hasItem(Arrays.asList("86")))
+        ;
     }
 
     @Test
@@ -256,11 +261,12 @@ public class PersonResourceTest extends DemoApplicationTests {
         given()
                 .pathParam("id", 1)
         .when()
-        .delete("/people/{id}")
+                .delete("/people/{id}")
         .then()
                 .log().body()
             .and()
-                .statusCode(HttpStatus.SC_NO_CONTENT);
+                .statusCode(HttpStatus.SC_NO_CONTENT)
+        ;
     }
 
     @Test
@@ -271,18 +277,18 @@ public class PersonResourceTest extends DemoApplicationTests {
         given()
                 .pathParam("id", 1)
                 .request()
-                .header("Accept", ContentType.ANY)
-                .header("Content-type", ContentType.JSON)
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
                 .body(person)
         .when()
-        .put("/people/{id}")
+                .put("/people/{id}")
         .then()
                 .log().body()
             .and()
                 .statusCode(HttpStatus.SC_ACCEPTED)
-                .body("id", equalTo(1),
-                        "name", equalTo("Kaike"),
-                        "cpf", equalTo("01383938504")
-                );
+                .body("id", is(1))
+                .body("name", is("Kaike"))
+                .body("cpf", is("01383938504"))
+        ;
     }
 }

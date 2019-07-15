@@ -45,7 +45,7 @@ public class PersonServiceTest {
     public ExpectedException expectedException = ExpectedException.none();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         sut = new PersonServiceImpl(personRepository);
         person = aPerson().withPhone().build();
         phone = aPerson().getPhone();
@@ -100,7 +100,7 @@ public class PersonServiceTest {
     public void should_return_phone_data_in_PhoneNotFoundException() {
         expectedException.expect(PhoneNotFoundException.class);
         expectedException.expectMessage("Phone not found: ("+ DDD +") "+ NUMBER_PHONE);
-        sut.findByPhone(phone);
 
+        sut.findByPhone(phone);
     }
 }
